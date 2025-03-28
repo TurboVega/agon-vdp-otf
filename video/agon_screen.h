@@ -51,7 +51,7 @@ std::unique_ptr<fabgl::VGABaseController> getVGAController(uint8_t colours) {
 void updateRGB2PaletteLUT() {
 	if (_VGAColourDepth <= 16) {
 		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
-		controller->updateRGB2PaletteLUT();
+		controller->getPainter()->updateRGB2PaletteLUT();
 	}
 }
 
@@ -60,7 +60,7 @@ void updateRGB2PaletteLUT() {
 void createPalette(uint16_t paletteId) {
 	if (_VGAColourDepth <= 16) {
 		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
-		controller->createPalette(paletteId);
+		controller->getPainter()->createPalette(paletteId);
 	}
 }
 
@@ -69,7 +69,7 @@ void createPalette(uint16_t paletteId) {
 void deletePalette(uint16_t paletteId) {
 	if (_VGAColourDepth <= 16) {
 		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
-		controller->deletePalette(paletteId);
+		controller->getPainter()->deletePalette(paletteId);
 	}
 }
 
@@ -78,7 +78,7 @@ void deletePalette(uint16_t paletteId) {
 void setItemInPalette(uint16_t paletteId, uint8_t index, RGB888 colour) {
 	if (_VGAColourDepth <= 16) {
 		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
-		controller->setItemInPalette(paletteId, index, colour);
+		controller->getPainter()->setItemInPalette(paletteId, index, colour);
 	}
 }
 
@@ -87,7 +87,7 @@ void setItemInPalette(uint16_t paletteId, uint8_t index, RGB888 colour) {
 void updateSignalList(uint16_t * signalList, uint16_t count) {
 	if (_VGAColourDepth <= 16) {
 		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
-		controller->updateSignalList(signalList, count);
+		controller->getPainter()->updateSignalList(signalList, count);
 	}
 }
 
@@ -106,7 +106,7 @@ void setPaletteItem(uint8_t l, RGB888 c) {
 	auto depth = getVGAColourDepth();
 	if (l < depth && depth <= 16) {
 		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
-		controller->setPaletteItem(l, c);
+		controller->getPainter()->setPaletteItem(l, c);
 	}
 }
 

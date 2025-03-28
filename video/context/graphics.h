@@ -16,6 +16,8 @@
 #include "types.h"
 #include "mat.h"
 
+#include "dispdrivers/paintdefs.h"
+
 // Definitions for the functions we're implementing here
 #include "context.h"
 

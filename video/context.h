@@ -12,6 +12,7 @@
 
 #include "agon.h"
 #include "sprites.h"
+#include "dispdrivers/paintdefs.h"
 
 extern bool isFeatureFlagSet(uint16_t flag);
 extern uint lastFrameCounter;
