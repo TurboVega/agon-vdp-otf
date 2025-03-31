@@ -9,7 +9,7 @@
 #include "agon_ps2.h"
 
 std::unique_ptr<fabgl::Canvas>	canvas;			// The canvas class
-std::unique_ptr<fabgl::VGABaseController>	_VGAController;		// Pointer to the current VGA controller class
+std::unique_ptr<fabgl::VideoController>	_VGAController;		// Pointer to the current VGA controller class
 
 #include "agon_ttxt.h"
 
@@ -35,7 +35,7 @@ void setLegacyModes(bool legacy) {
 // Returns:
 // - A singleton instance of a VGAController class
 //
-std::unique_ptr<fabgl::VGABaseController> getVGAController(uint8_t colours) {
+std::unique_ptr<fabgl::VideoController> getVGAController(uint8_t colours) {
 	switch (colours) {
 		case  2: return std::move(std::unique_ptr<fabgl::VGA2Controller>(new fabgl::VGA2Controller()));
 		case  4: return std::move(std::unique_ptr<fabgl::VGA4Controller>(new fabgl::VGA4Controller()));
@@ -50,7 +50,7 @@ std::unique_ptr<fabgl::VGABaseController> getVGAController(uint8_t colours) {
 //
 void updateRGB2PaletteLUT() {
 	if (_VGAColourDepth <= 16) {
-		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
+		fabgl::VideoController * controller = (fabgl::VideoController *)(_VGAController.get());
 		controller->getPainter()->updateRGB2PaletteLUT();
 	}
 }
@@ -59,7 +59,7 @@ void updateRGB2PaletteLUT() {
 //
 void createPalette(uint16_t paletteId) {
 	if (_VGAColourDepth <= 16) {
-		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
+		fabgl::VideoController * controller = (fabgl::VideoController *)(_VGAController.get());
 		controller->getPainter()->createPalette(paletteId);
 	}
 }
@@ -68,7 +68,7 @@ void createPalette(uint16_t paletteId) {
 //
 void deletePalette(uint16_t paletteId) {
 	if (_VGAColourDepth <= 16) {
-		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
+		fabgl::VideoController * controller = (fabgl::VideoController *)(_VGAController.get());
 		controller->getPainter()->deletePalette(paletteId);
 	}
 }
@@ -77,7 +77,7 @@ void deletePalette(uint16_t paletteId) {
 //
 void setItemInPalette(uint16_t paletteId, uint8_t index, RGB888 colour) {
 	if (_VGAColourDepth <= 16) {
-		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
+		fabgl::VideoController * controller = (fabgl::VideoController *)(_VGAController.get());
 		controller->getPainter()->setItemInPalette(paletteId, index, colour);
 	}
 }
@@ -86,7 +86,7 @@ void setItemInPalette(uint16_t paletteId, uint8_t index, RGB888 colour) {
 //
 void updateSignalList(uint16_t * signalList, uint16_t count) {
 	if (_VGAColourDepth <= 16) {
-		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
+		fabgl::VideoController * controller = (fabgl::VideoController *)(_VGAController.get());
 		controller->getPainter()->updateSignalList(signalList, count);
 	}
 }
@@ -105,7 +105,7 @@ inline uint8_t getVGAColourDepth() {
 void setPaletteItem(uint8_t l, RGB888 c) {
 	auto depth = getVGAColourDepth();
 	if (l < depth && depth <= 16) {
-		fabgl::VGAPalettedController * controller = (fabgl::VGAPalettedController *)(_VGAController.get());
+		fabgl::VideoController * controller = (fabgl::VideoController *)(_VGAController.get());
 		controller->getPainter()->setPaletteItem(l, c);
 	}
 }
