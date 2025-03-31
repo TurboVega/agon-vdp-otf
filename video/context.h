@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <vector>
-
+#include <atomic>
 #include <fabgl.h>
 
 #include "agon.h"
