@@ -941,11 +941,11 @@ void Context::setVariable(uint16_t var, uint16_t value) {
 
 		case 0x20:	// Frame counter low
 			lastFrameCounter = (lastFrameCounter & 0xFFFF0000) | (value & 0xFFFF);
-			_VGAController->frameCounter = lastFrameCounter;
+			_VGAController->m_frameCounter = lastFrameCounter;
 			break;
 		case 0x21:	// Frame counter high
 			lastFrameCounter = (lastFrameCounter & 0xFFFF) | (value << 16);
-			_VGAController->frameCounter = lastFrameCounter;
+			_VGAController->m_frameCounter = lastFrameCounter;
 			break;
 
 		case 0x56:	// Legacy modes flag

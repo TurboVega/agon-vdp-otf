@@ -152,8 +152,8 @@ void processLoop(void * parameter) {
 			continue;
 		}
 
-		if (_VGAController->frameCounter != lastFrameCounter) {
-			lastFrameCounter = _VGAController->frameCounter;
+		if (_VGAController->m_frameCounter != lastFrameCounter) {
+			lastFrameCounter = _VGAController->m_frameCounter;
 			processor->bufferCallCallbacks(CALLBACK_VSYNC);
 		}
 

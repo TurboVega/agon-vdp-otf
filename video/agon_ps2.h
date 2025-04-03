@@ -34,7 +34,7 @@ void zdi_enter ();
 void zdi_process_cmd (uint8_t key);
 #endif
 
-bool resetMousePositioner(uint16_t width, uint16_t height, fabgl::VGABaseController * display);
+bool resetMousePositioner(uint16_t width, uint16_t height, fabgl::VideoController * display);
 extern bool consoleMode;
 extern HardwareSerial DBGSerial;
 
@@ -356,7 +356,7 @@ bool setMouseWheelAcceleration(uint32_t acceleration) {
 	return false;
 }
 
-bool resetMousePositioner(uint16_t width, uint16_t height, fabgl::VGABaseController * display) {
+bool resetMousePositioner(uint16_t width, uint16_t height, fabgl::VideoController * display) {
 	auto mouse = getMouse();
 	if (!mouse) {
 		return false;
